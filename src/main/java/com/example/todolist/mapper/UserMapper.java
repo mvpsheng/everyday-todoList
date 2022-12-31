@@ -18,6 +18,9 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE id = #{id}")
     User getOne(Integer id);
 
+    @Select("SELECT * FROM user WHERE phone_number = #{phoneNumber}")
+    User getOneByPhoneNumber(String phoneNumber);
+
     @Insert("INSERT INTO user(userName, phone_number, password) VALUES(#{userName}, #{phoneNumber}, #{password})")
     void insert(User user);
 

@@ -1,5 +1,7 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.dto.AuthenticationResponse;
+import com.example.todolist.dto.LoginRequest;
 import com.example.todolist.dto.RegisterRequest;
 import com.example.todolist.service.AuthService;
 import lombok.AllArgsConstructor;
@@ -28,5 +30,10 @@ public class AuthController {
         authService.signup(registerRequest);
         return new ResponseEntity<>("User Registration Successful",
                 OK);
+    }
+
+    @PostMapping("/login")
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }
