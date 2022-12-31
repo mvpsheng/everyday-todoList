@@ -40,6 +40,7 @@ public class AuthService {
         if (user.getPassword().equals(loginRequest.getPassword())) {
             return AuthenticationResponse.builder()
                     .username(user.getUserName())
+                    .userId(user.getUserId())
                     .build();
         } else {
             return AuthenticationResponse.builder()
