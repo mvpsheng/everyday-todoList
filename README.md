@@ -71,9 +71,19 @@
 >3. 请求参数：客户端可以在发出请求时，在请求参数中包含用户身份信息，服务器可以从请求参数中获取用户身份信息。
 >4. 路由参数：客户端可以在发出请求时，在路由参数中包含用户身份信息，服务器可以从路由参数中获取用户身份信息。
 
-4. 跨域请求问题
+4. 跨域请求问题 （已解决）
 
        解决方案：
        1. https://blog.csdn.net/wangmx1993328/article/details/88524163
         这篇文章讲了7种解决方案，我选择了方式5：重写 WebMvcConfigurer接口(全局跨域) 
         重写了 addCorsMappings 方法设置跨域映射。
+
+5. mybatis 查询结果对象数据不完整（待解决）
+      ![img.png](img.png)
+      
+      ![img_1.png](img_1.png)
+      
+      ![img_2.png](img_2.png)
+
+      ![img_3.png](img_3.png)
+      用这个mapper查询的user对象id和phoneNumber都是null，但是数据库中数据是完整的。
