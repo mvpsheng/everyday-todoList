@@ -18,6 +18,10 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE id = #{id}")
     User getOne(Integer id);
 
+    @Results({
+            @Result(property = "userId", column = "user_id"),
+            @Result(property = "phoneNumber", column = "phone_number")
+    })
     @Select("SELECT * FROM user WHERE phone_number = #{phoneNumber}")
     User getOneByPhoneNumber(String phoneNumber);
 

@@ -87,3 +87,6 @@
 
       ![img_3.png](img_3.png)
       用这个mapper查询的user对象id和phoneNumber都是null，但是数据库中数据是完整的。
+
+      解决方案：
+       因为没有实现实体和关系的映射，而且数据库表属性和对象属性不一样，导致mybatis查询结果为null；
