@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * FileName: TopicService
  * author: gxs
@@ -25,6 +27,10 @@ public class TopicService {
         topic.setTopicName(topicRequest.getTopicName());
         topic.setFinished(false);
         topicMapper.create(topic);
+    }
+
+    public List<Topic> getAll(Long userId) {
+        return topicMapper.getAll(userId);
     }
 
     public void updateTopic(TopicRequest topicRequest) {

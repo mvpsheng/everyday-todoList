@@ -1,12 +1,16 @@
 package com.example.todolist.controller;
 
+import com.example.todolist.controller.util.Result;
 import com.example.todolist.dto.TopicRequest;
+import com.example.todolist.entity.Topic;
 import com.example.todolist.entity.User;
 import com.example.todolist.service.TopicService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.http.ResponseEntity.status;
 
@@ -24,9 +28,14 @@ public class TopicController {
 
     @PostMapping
     public ResponseEntity<Void> createTopic(@RequestBody TopicRequest topicRequest) {
-        User user = new User();
-        topicService.create(topicRequest, user.getUserId());
+        topicService.create(topicRequest, topicRequest.getUserId());
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public Result getTopic(@PathVariable Long id) {
+        List<Topic> allTopic = topicService.getAll(id);
+        return new Result(allTopic);
     }
 
     @PutMapping

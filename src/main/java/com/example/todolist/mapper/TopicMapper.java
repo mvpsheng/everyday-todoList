@@ -2,10 +2,9 @@ package com.example.todolist.mapper;
 
 import com.example.todolist.entity.Topic;
 import com.example.todolist.entity.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * FileName: TopicMapper
@@ -22,4 +21,11 @@ public interface TopicMapper {
 
     @Delete("DELETE FROM topic WHERE topicName =#{topicName}")
     void delete(String topicName);
+
+    @Results({
+            @Result(property = "topicId", column = "topic_id"),
+            @Result(property = "userId", column = "user_id")
+    })
+    @Select("Select * from topic where user_Id = #{userId}")
+    List<Topic> getAll(Long userId);
 }
