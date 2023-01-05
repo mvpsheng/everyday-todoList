@@ -2,10 +2,9 @@ package com.example.todolist.mapper;
 
 import com.example.todolist.entity.Task;
 import com.example.todolist.entity.Topic;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * FileName: TaskMapper
@@ -16,7 +15,12 @@ import org.apache.ibatis.annotations.Update;
 public interface TaskMapper {
     @Insert("INSERT INTO task(topic_id, taskName, defaultTime, finished) VALUES(#{topicId}, #{taskName}, #{defaultTime}, #{finished})")
     void create(Task task);
-
+    @Results({
+            @Result(property = "topicId", column = "topic_id"),
+            @Result(property = "taskId", column = "task_id")
+    })
+    @Select("Select * from task where topic_Id = #{topicId}")
+    List<Task> getAllTask(Long topicId);
 
     @Delete("DELETE FROM task WHERE taskName =#{taskName}")
     void delete(String taskName);
