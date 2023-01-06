@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskRequest {
-    private Long topicId;
+public class TaskDeleteRequest {
+    private Long taskId;
     private String taskName;
-    private Integer defaultTime;
+//    private Integer defaultTime;
 }

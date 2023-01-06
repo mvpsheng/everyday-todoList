@@ -27,18 +27,16 @@ public class TopicController {
 
     private final TopicService topicService;
 
-    private final TaskService taskService;
-
     @PostMapping
-    public ResponseEntity<Void> createTopic(@RequestBody TopicRequest topicRequest) {
+    public Result createTopic(@RequestBody TopicRequest topicRequest) {
         topicService.create(topicRequest, topicRequest.getUserId());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        List<TopicResponse> allTopic = topicService.getAll(topicRequest.getUserId());
+        return new Result(allTopic);
     }
 
     @GetMapping("/{userId}")
     public Result getTopic(@PathVariable Long userId) {
         List<TopicResponse> allTopic = topicService.getAll(userId);
-
         return new Result(allTopic);
     }
 

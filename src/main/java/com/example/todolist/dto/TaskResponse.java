@@ -12,8 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskRequest {
-    private Long topicId;
+public class TaskResponse {
+
+    private Long taskId;
     private String taskName;
     private Integer defaultTime;
+    private boolean finished;
 }

@@ -23,6 +23,6 @@ public class Task {
     private Long taskId;
     private Long topicId;
     private String taskName;
-    private String defaultTime;
+    private Integer defaultTime;
     private boolean finished;
 }

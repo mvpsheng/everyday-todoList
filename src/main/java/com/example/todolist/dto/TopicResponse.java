@@ -21,5 +21,5 @@ public class TopicResponse {
     private Long topicId;
     private String topicName;
     private boolean completed;
-    private List<Task> taskList;
+    private List<TaskResponse> taskList;
 }
