@@ -46,8 +46,8 @@ public class TopicController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("by-user/{topicName}")
-    public ResponseEntity<String> deleteTopicByTopicName(String topicName) {
-        return status(HttpStatus.OK).body(topicService.deleteTopicByTopicName(topicName));
+    @DeleteMapping("deleteTopicByTopicId")
+    public void deleteTopicByTopicName(@RequestBody TopicResponse topicResponse) {
+        topicService.deleteTopicByTopicId(topicResponse.getTopicId());
     }
 }

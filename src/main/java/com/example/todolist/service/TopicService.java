@@ -54,8 +54,8 @@ public class TopicService {
         topic.setFinished(topicRequest.isCompleted());
         topicMapper.update(topic);
     }
-    public String deleteTopicByTopicName(String topicName) {
-        topicMapper.delete(topicName);
-        return "topic " + topicName + " deleted";
+
+    public void deleteTopicByTopicId(Long topicId) {
+        topicMapper.deleteTopicById(topicId);
     }
 }

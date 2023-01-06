@@ -19,13 +19,16 @@ public interface TopicMapper {
     @Update("UPDATE topic SET topicName=#{topicName},finished=#{finished} WHERE topicName =#{topicName}")
     void update(Topic topic);
 
-    @Delete("DELETE FROM topic WHERE topicName =#{topicName}")
-    void delete(String topicName);
-
     @Results({
             @Result(property = "topicId", column = "topic_id"),
             @Result(property = "userId", column = "user_id")
     })
     @Select("Select * from topic where user_Id = #{userId}")
     List<Topic> getAll(Long userId);
+
+    @Results({
+            @Result(property = "topicId", column = "topic_id")
+    })
+    @Delete("DELETE FROM topic WHERE topic_id =#{topicId}")
+    void deleteTopicById(Long topicId);
 }
