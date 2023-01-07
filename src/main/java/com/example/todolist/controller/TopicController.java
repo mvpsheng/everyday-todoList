@@ -27,25 +27,42 @@ public class TopicController {
 
     private final TopicService topicService;
 
+    /**
+     * 新建话题
+     * @Param topicRequest
+     * */
     @PostMapping
     public Result createTopic(@RequestBody TopicRequest topicRequest) {
-        topicService.create(topicRequest, topicRequest.getUserId());
+        topicService.createTopic(topicRequest, topicRequest.getUserId());
         List<TopicResponse> allTopic = topicService.getAll(topicRequest.getUserId());
         return new Result(allTopic);
     }
 
+    /**
+     * 根据用户ID获取该用户所有话题（同时获取每一个话题的所有任务）
+     * @Param userId
+     * */
     @GetMapping("/{userId}")
-    public Result getTopic(@PathVariable Long userId) {
+    public Result getTopicByUserId(@PathVariable Long userId) {
         List<TopicResponse> allTopic = topicService.getAll(userId);
         return new Result(allTopic);
     }
 
+    /**
+     * 更新话题
+     * @Param topicRequest
+     * */
     @PutMapping
-    public ResponseEntity<Void> updateTopic(@RequestBody TopicRequest topicRequest) {
+    public Result updateTopic(@RequestBody TopicRequest topicRequest) {
         topicService.updateTopic(topicRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        List<TopicResponse> allTopic = topicService.getAll(topicRequest.getUserId());
+        return new Result(allTopic);
     }
 
+    /**
+     * 根据话题Id删除话题
+     * @Param topicId
+     * */
     @DeleteMapping("deleteTopicByTopicId")
     public void deleteTopicByTopicName(@RequestBody TopicResponse topicResponse) {
         topicService.deleteTopicByTopicId(topicResponse.getTopicId());

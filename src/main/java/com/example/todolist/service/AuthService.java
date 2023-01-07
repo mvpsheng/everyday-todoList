@@ -24,6 +24,10 @@ public class AuthService {
 
     private final UserMapper userMapper;
 
+    /**
+     * 用户注册
+     * @Param registerRequest
+     * */
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
         user.setUserId(Long.parseLong(UUID.randomUUID().toString()));
@@ -38,6 +42,10 @@ public class AuthService {
         userMapper.insert(user);
     }
 
+    /**
+     * 用户登录
+     * @Param loginRequest
+     * */
     public AuthenticationResponse login(LoginRequest loginRequest) {
         User user = userMapper.getOneByPhoneNumber(loginRequest.getPhoneNumber());
         System.out.println(user);

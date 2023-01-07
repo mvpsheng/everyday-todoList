@@ -26,26 +26,33 @@ public class TaskController {
 
     private final TaskService taskService;
 
+    /**
+     * 新建任务
+     * @Param taskRequest
+     * */
     @PostMapping
     public Result createTask(@RequestBody TaskRequest taskRequest) {
-        taskService.create(taskRequest);
+        taskService.createTask(taskRequest);
         List<TaskResponse> allTask = taskService.getAll(taskRequest.getTopicId());
         return new Result(allTask);
     }
 
+    /**
+     * 根据话题ID获取该话题所有任务
+     * @Param topicId
+     * */
     @GetMapping("/{topicId}")
-    public Result getTopic(@PathVariable Long topicId) {
+    public Result getTasksByTopicId(@PathVariable Long topicId) {
         List<TaskResponse> allTask = taskService.getAll(topicId);
         return new Result(allTask);
     }
 
+    /**
+     * 根据任务ID删除任务
+     * @Param topicId
+     * */
     @DeleteMapping("/deleteById")
     public void deleteTaskById(@RequestBody TaskDeleteRequest taskDeleteRequest) {
         taskService.deleteTaskById(taskDeleteRequest.getTaskId());
-    }
-
-    @DeleteMapping("/deleteByName")
-    public void deleteTaskByName(@RequestBody TaskDeleteRequest taskDeleteRequest) {
-        taskService.deleteTaskByName(taskDeleteRequest.getTaskName());
     }
 }

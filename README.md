@@ -22,6 +22,7 @@
 ## ToDoList 前端地址：https://gitee.com/hulan2352495015/todolist
 
 ## ToDoList 项目后端开发
+      后端技术栈： SpringBoot2.7.7、 MyBatis2.3.0、 MySQL5.7.9
 ### 数据库设计
 
     用户实体

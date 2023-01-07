@@ -25,6 +25,10 @@ public class AuthController {
 
     private final AuthService authService;
 
+    /**
+     * 用户注册
+     * @Param registerRequest
+     * */
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
         authService.signup(registerRequest);
@@ -32,6 +36,10 @@ public class AuthController {
                 OK);
     }
 
+    /**
+     * 用户登录
+     * @Param loginRequest
+     * */
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
