@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TopicRequest {
     private Long userId;
+    private Long topicId;
     private String topicName;
     private boolean completed;
 }
