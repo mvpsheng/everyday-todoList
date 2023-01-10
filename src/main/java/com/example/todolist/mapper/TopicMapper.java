@@ -29,8 +29,8 @@ public interface TopicMapper {
             @Result(property = "userId", column = "user_id"),
             @Result(property = "taskId", column = "task_id")
     })
-    @Select("SELECT top.topic_id, top.topicName, top.finished, tas.task_id, tas.taskName, tas.defaultTime, tas.finished from topic top join task tas\n" +
-            " on top.topic_id = tas.topic_id where user_id = #{userID}" +
+    @Select("SELECT top.topic_id, top.topicName, top.finished, tas.task_id, tas.taskName, tas.defaultTime, tas.finished from topic top\n" +
+            " left join task tas on top.topic_id = tas.topic_id where user_id = #{userID}" +
             " order by top.topic_id;")
     List<AllTopicData> getAllTopic(Long userId);
     @Results({

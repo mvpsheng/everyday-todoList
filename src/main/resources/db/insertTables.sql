@@ -38,4 +38,8 @@
 # (1, "复习不熟悉的Java问题", "30mins", 0);
 --     联表查询测试
 # use todolist;
-# SELECT top.topic_id, top.topicName, top.finished, tas.task_id, tas.taskName, tas.defaultTime, tas.finished from topic top join task tas;
+# SELECT top.topic_id, top.topicName, top.finished, tas.task_id, tas.taskName, tas.defaultTime, tas.finished from topic top
+# left join task tas
+# on top.topic_id = tas.topic_id
+# order by top.topic_id;
+# on top.topic_id = tas.topic_id

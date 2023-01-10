@@ -121,3 +121,5 @@
 8. ![img_6.png](img_6.png) 出现一场，方法不支持
      
     解决方案：![img_7.png](img_7.png) https://www.jianshu.com/p/d545901dd8d6
+
+9. lombok 的@builder 来新建一个对象和用构造器来新建一个对象分别优缺点与选择（未解决）

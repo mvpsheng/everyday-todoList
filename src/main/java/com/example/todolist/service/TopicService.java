@@ -46,19 +46,7 @@ public class TopicService {
      * @Param userId
      * */
     public List<TopicResponse> getAll(Long userId) {
-//        List<TopicResponse> responseList = new ArrayList<>();
-//        List<Topic> allTopic = topicMapper.getAll(userId);
-//        for (int i = 0; i < allTopic.size(); i++) {
-//            responseList.add(i,new TopicResponse()
-//                            .builder()
-//                    .topicId(allTopic.get(i).getTopicId())
-//                    .topicName(allTopic.get(i).getTopicName())
-//                    .taskList(taskMapper.getAllTask(allTopic.get(i).getTopicId()))
-//                    .build()
-//            );
-//        }
         List<TopicResponse> responseList = new ArrayList<>();
-
         List<AllTopicData> allTopicDataList = topicMapper.getAllTopic(userId);
         int currentTopicId = -1;
         int topicListIndex = 0;
@@ -86,13 +74,6 @@ public class TopicService {
                         .build();
                 taskList.add(taskResponse1);
                 responseList.get(topicListIndex - 1).setTaskList(taskList);
-//                responseList.get(topicListIndex - 1).getTaskList().add(new TaskResponse()
-//                                .builder()
-//                                        .taskId(allTopicData.getTaskId())
-//                                        .taskName(allTopicData.getTaskName())
-//                                        .defaultTime(allTopicData.getDefaultTime())
-//                                        .finished(allTopicData.isFinished())
-//                                .build());
             }
         }
         return responseList;
