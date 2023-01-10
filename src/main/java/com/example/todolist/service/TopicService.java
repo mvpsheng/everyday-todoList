@@ -1,5 +1,7 @@
 package com.example.todolist.service;
 
+import com.example.todolist.dto.AllTopicData;
+import com.example.todolist.dto.TaskResponse;
 import com.example.todolist.dto.TopicRequest;
 import com.example.todolist.dto.TopicResponse;
 import com.example.todolist.entity.Topic;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,16 +46,54 @@ public class TopicService {
      * @Param userId
      * */
     public List<TopicResponse> getAll(Long userId) {
+//        List<TopicResponse> responseList = new ArrayList<>();
+//        List<Topic> allTopic = topicMapper.getAll(userId);
+//        for (int i = 0; i < allTopic.size(); i++) {
+//            responseList.add(i,new TopicResponse()
+//                            .builder()
+//                    .topicId(allTopic.get(i).getTopicId())
+//                    .topicName(allTopic.get(i).getTopicName())
+//                    .taskList(taskMapper.getAllTask(allTopic.get(i).getTopicId()))
+//                    .build()
+//            );
+//        }
         List<TopicResponse> responseList = new ArrayList<>();
-        List<Topic> allTopic = topicMapper.getAll(userId);
-        for (int i = 0; i < allTopic.size(); i++) {
-            responseList.add(i,new TopicResponse()
-                            .builder()
-                    .topicId(allTopic.get(i).getTopicId())
-                    .topicName(allTopic.get(i).getTopicName())
-                    .taskList(taskMapper.getAllTask(allTopic.get(i).getTopicId()))
-                    .build()
-            );
+
+        List<AllTopicData> allTopicDataList = topicMapper.getAllTopic(userId);
+        int currentTopicId = -1;
+        int topicListIndex = 0;
+        for (AllTopicData allTopicData : allTopicDataList) {
+            if (allTopicData.getTopicId() != currentTopicId) { // 如果id 和 i相同，说明是这是当前话题，只需要加载一遍topic，之后的就加载其任务
+                responseList.add(new TopicResponse()
+                        .builder()
+                        .topicId(allTopicData.getTopicId())
+                        .topicName(allTopicData.getTopicName())
+                        .taskList(Collections.singletonList(new TaskResponse(
+                                allTopicData.getTaskId(),
+                                allTopicData.getTaskName(),
+                                allTopicData.getDefaultTime(),
+                                allTopicData.isFinished())))
+                        .build());
+                topicListIndex++;
+                currentTopicId = responseList.get(topicListIndex - 1).getTopicId().intValue();
+            } else if (allTopicData.getTopicId() == currentTopicId) {
+                List<TaskResponse> taskList = new ArrayList<>(responseList.get(topicListIndex - 1).getTaskList());
+                TaskResponse taskResponse1 = new TaskResponse().builder()
+                        .taskId(allTopicData.getTaskId())
+                        .taskName(allTopicData.getTaskName())
+                        .defaultTime(allTopicData.getDefaultTime())
+                        .finished(allTopicData.isFinished())
+                        .build();
+                taskList.add(taskResponse1);
+                responseList.get(topicListIndex - 1).setTaskList(taskList);
+//                responseList.get(topicListIndex - 1).getTaskList().add(new TaskResponse()
+//                                .builder()
+//                                        .taskId(allTopicData.getTaskId())
+//                                        .taskName(allTopicData.getTaskName())
+//                                        .defaultTime(allTopicData.getDefaultTime())
+//                                        .finished(allTopicData.isFinished())
+//                                .build());
+            }
         }
         return responseList;
     }

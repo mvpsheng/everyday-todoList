@@ -1,4 +1,4 @@
-## 项目文档
+## 📚 项目介绍
 这个项目是要做一个类似任务列表的功能，名字叫ToDoList。
 
 1. 用户用这个软件来记录每天要干什么，同时这个事情预计要干多长时间。（记录信息）例如： 学习HTTP协议  30 mins
@@ -22,7 +22,7 @@
 ## ToDoList 前端地址：https://gitee.com/hulan2352495015/todolist
 
 ## ToDoList 项目后端开发
-      后端技术栈： SpringBoot2.7.7、 MyBatis2.3.0、 MySQL5.7.9
+> 核心技术栈：JDK1.8、SpringBoot2.7.7、 MyBatis2.3.0、 MySQL5.7.9
 ### 数据库设计
 
     用户实体
@@ -115,3 +115,9 @@
     解决方案： 用Lombok的builder注解 实现对象映射。
 
 7. web接口-根据用户Id查询所有话题，速度慢，待优化 
+      
+     解决方案：利用sql联表查询，将数据一次性全部查出来，
+      这样就不用再service层用一个循环去遍历查询sql，显著提升接口返回速度。
+8. ![img_6.png](img_6.png) 出现一场，方法不支持
+     
+    解决方案：![img_7.png](img_7.png) https://www.jianshu.com/p/d545901dd8d6
