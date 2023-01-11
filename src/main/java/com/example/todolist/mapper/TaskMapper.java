@@ -2,7 +2,6 @@ package com.example.todolist.mapper;
 
 import com.example.todolist.dto.TaskResponse;
 import com.example.todolist.entity.Task;
-import com.example.todolist.entity.Topic;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public interface TaskMapper {
     @Select("Select task_id, taskName, defaultTime, finished from task where topic_Id = #{topicId}")
     List<TaskResponse> getAllTask(Long topicId);
 
-    @Delete("DELETE FROM task WHERE taskName =#{taskName}")
+    @Delete("DELETE FROM task WHERE taskName = #{taskName}")
     void delete(String taskName);
 
     @Results({
@@ -36,8 +35,9 @@ public interface TaskMapper {
     void deleteTaskById(Long taskId);
 
     @Results({
+            @Result(property = "topicId", column = "topic_id"),
             @Result(property = "taskId", column = "task_id")
     })
-    @Delete("DELETE FROM task WHERE taskName =#{taskName}")
-    void deleteTaskByName(String taskName);
+    @Delete("DELETE FROM task WHERE topic_id = #{topicId}")
+    void deleteTasksByTopicId(Long topicId);
 }

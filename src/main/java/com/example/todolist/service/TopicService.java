@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -95,6 +94,7 @@ public class TopicService {
      * @Param topicId
      * */
     public void deleteTopicByTopicId(Long topicId) {
+        taskMapper.deleteTasksByTopicId(topicId);
         topicMapper.deleteTopicById(topicId);
     }
 }
