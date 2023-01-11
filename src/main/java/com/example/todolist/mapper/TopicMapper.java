@@ -50,6 +50,6 @@ public interface TopicMapper {
     @Results({
             @Result(property = "topicId", column = "topic_id")
     })
-    @Delete("DELETE FROM topic WHERE topic_id =#{topicId}")
+    @Delete("DELETE FROM topic WHERE topic_id = #{topicId}")
     void deleteTopicById(Long topicId);
 }
