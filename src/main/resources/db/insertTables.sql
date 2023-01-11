@@ -11,7 +11,23 @@
 # INSERT INTO task
 # (topic_id, taskName, defaultTime, finished)
 # values
-# (1, "看牛客面经", "10mins", 0);
+# (2, "看源码", "30", 0);
+# INSERT INTO task
+# (topic_id, taskName, defaultTime, finished)
+# values
+# (3, "看电影", "50", 0);
+# INSERT INTO task
+# (topic_id, taskName, defaultTime, finished)
+# values
+# (3, "举哑铃", "10", 0);
+# INSERT INTO task
+# (topic_id, taskName, defaultTime, finished)
+# values
+# (7, "玩游戏", "30", 0);
+# INSERT INTO task
+# (topic_id, taskName, defaultTime, finished)
+# values
+# (7, "冥想", "20", 0);
 # INSERT INTO task
 # (topic_id, taskName, defaultTime, finished)
 # values
@@ -20,3 +36,10 @@
 # (topic_id, taskName, defaultTime, finished)
 # values
 # (1, "复习不熟悉的Java问题", "30mins", 0);
+--     联表查询测试
+# use todolist;
+# SELECT top.topic_id, top.topicName, top.finished, tas.task_id, tas.taskName, tas.defaultTime, tas.finished from topic top
+# left join task tas
+# on top.topic_id = tas.topic_id
+# order by top.topic_id;
+# on top.topic_id = tas.topic_id
