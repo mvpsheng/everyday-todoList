@@ -1,0 +1,35 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://localhost:3306/todolist?useSSL=false&autoReconnect=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    initial-size: 20
+    max-idle: 60
+    max-wait: 10000
+    min-idle: 10
+    max-active: 200
+server:
+  port: 8080
+knife4j:
+  enable: true
+  documents:
+    - group: TodoList Group
+      name: TodoList Backend
+#      locations: classpath:wiki/*
+  setting:
+    # default lang
+    language: en-US
+    # footer
+    enableFooter: false
+    enableFooterCustom: true
+    footerCustomContent: MIT | [Java ??]()
+    # header
+    enableHomeCustom: true
+#    homeCustomLocation: classpath:wiki/README.md
+    # models
+    enableSwaggerModels: true
+    swaggerModelName: My Models
